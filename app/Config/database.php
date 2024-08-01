@@ -1,12 +1,13 @@
 <?php
 class Database {
    private $host, $user, $password, $db;
-   protected $conn;
+   public $conn;
 
    public function __construct(){
-      $this->host = "localhost";
+      $this->host = "127.0.0.1:6033";
+      // $this->host = "localhost";
       $this->user = "root";
-      $this->password = '';
+      $this->password = 'kurniawan';
       $this->db = 'persuratan_dosen';
 
       $this->conn = new mysqli($this->host, $this->user, $this->password, $this->db); 
