@@ -1,9 +1,10 @@
 <?php
 class Database {
    private $host, $user, $password, $db;
-   protected $conn;
+   public $conn;
 
    public function __construct(){
+      // $this->host = "127.0.0.1:6033";
       $this->host = "localhost";
       $this->user = "root";
       $this->password = '';
