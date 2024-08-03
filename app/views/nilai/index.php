@@ -3,25 +3,35 @@ $title = "Daftar Nilai";
 include '../partials/header.php';
 
 $nilai = new Nilai();
-
+if (isset($_POST["del"])) {
+    $nilai_id = mysqli_real_escape_string($database->conn, $_POST["nilai_id"]);
+    if ($nilai->destroy($nilai_id)) {
+        echo "
+        <script>
+            alert('Berhasil Menghapus Nilai');
+            window.location.href = '" . BASE_URL . "app/views/nilai/index.php'
+        </script>
+        ";
+    }
+}
 ?>
-    <a href="form-add.php">
-        Tambah Nilai
-    </a>
-    <table border="1" cellpadding="10" cellspacing ="0">
-        <tr>
-            <th>No</th>
-            <th>Nama Mahasiswa</th>
-            <th>Nama Matkul</th>
-            <th>Semester</th>
-            <th>Nilai</th>
-            <th>Nilai Akhir</th>
-            <th>Action</th>
-        </tr>
-        <?php
-        $no = 1;
-        foreach($nilai->all() as $key => $value):
-        ?>
+<a href="form-add.php">
+    Tambah Nilai
+</a>
+<table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+        <th>No</th>
+        <th>Nama Mahasiswa</th>
+        <th>Nama Matkul</th>
+        <th>Semester</th>
+        <th>Nilai</th>
+        <th>Nilai Akhir</th>
+        <th>Action</th>
+    </tr>
+    <?php
+    $no = 1;
+    foreach ($nilai->all() as $key => $value) :
+    ?>
         <tr>
             <td><?= $no ?></td>
             <td><?= $value["nama_mhs"] ?></td>
@@ -33,25 +43,25 @@ $nilai = new Nilai();
                 <form method="post" id="delMkl">
                     [<a href="form-edit.php?id=<?= $value["nilai_id"] ?>">Edit</a>]
                     [<a href="#" onclick="del()">Hapus</a>]
-                    <input type="hidden" name="nilai_id" value="<?= $value["nilai_id"]?>">
+                    <input type="hidden" name="nilai_id" value="<?= $value["nilai_id"] ?>">
                     <input type="hidden" name="del">
                 </form>
             </td>
         </tr>
-        <?php
+    <?php
         $no++;
-        endforeach;
-        ?>
-    </table>
+    endforeach;
+    ?>
+</table>
 
-    <script>
-        function del(){
-            var conf = confirm("Yakin ingin menghapus data ini?");
-            if(conf === true){
-                document.getElementById("delMkl").submit()
-            }
+<script>
+    function del() {
+        var conf = confirm("Yakin ingin menghapus data ini?");
+        if (conf === true) {
+            document.getElementById("delMkl").submit()
         }
-    </script>
+    }
+</script>
 <?php
 include '../partials/footer.php'
 ?>
