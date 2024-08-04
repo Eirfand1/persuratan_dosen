@@ -8,21 +8,23 @@ if (isset($_POST["save"])) {
         echo "
         <script>
             alert('Gagal Menambahkan Nilai');
-            window.location.href = '" . BASE_URL . "app/views/nilai/index.php'
+            window.location.href = '" . BASE_URL . "nilai/index.php'
         </script>
         ";
     } else {
-        $nilai_a = mysqli_real_escape_string($database->conn, $_POST["nilai"]);
-        $nilai_akhir = mysqli_real_escape_string($database->conn, $_POST["nilai_akhir"]);
-        $mahasiswa_id = mysqli_real_escape_string($database->conn, $_POST["mahasiswa"]);
-        $matkul_id = mysqli_real_escape_string($database->conn, $_POST["matkul"]);
-        $semester_id = mysqli_real_escape_string($database->conn, $_POST["semester"]);
+        $data = [
+            "nilai" => floatval(mysqli_real_escape_string($database->conn, $_POST["nilai"])),
+            "nilai_akhir" => floatval(mysqli_real_escape_string($database->conn, $_POST["nilai_akhir"])),
+            "mahasiswa_id" => mysqli_real_escape_string($database->conn, $_POST["mahasiswa"]),
+            "matkul_id" => mysqli_real_escape_string($database->conn, $_POST["matkul"]),
+            "semester_id" => mysqli_real_escape_string($database->conn, $_POST["semester"]),
+        ];
 
-        if ($nilai->create($nilai_a, $nilai_akhir, $mahasiswa_id, $matkul_id, $semester_id)) {
+        if ($nilai->create($data)) {
             echo "
             <script>
                 alert('Berhasil Menambahkan Nilai');
-                window.location.href = '" . BASE_URL . "app/views/nilai/index.php'
+                window.location.href = '" . BASE_URL . "nilai/index.php'
             </script>
             ";
         }

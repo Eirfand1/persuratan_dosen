@@ -20,12 +20,11 @@ class Nilai extends Database
         return $data;
     }
 
-    public function create($nilai, $nilai_akhir, $mahasiswa_id, $matkul_id, $semester_id)
+    public function create($data)
     {
-        $nilai = floatval($nilai);
-        $nilai_akhir = floatval($nilai_akhir);
-        return $this->conn->query("INSERT INTO $this->table (nilai,nilai_akhir,mahasiswa_id,matkul_id,semester_id) 
-        VALUES ('$nilai','$nilai_akhir','$mahasiswa_id','$matkul_id','$semester_id')");
+        $columns = implode(',', array_keys($data));
+        $values = "'" . implode("','", array_values($data)) . "'";
+        return $this->conn->query("INSERT INTO $this->table ($columns) VALUES ($values)");
     }
 
     public function getNilaiById($id)
@@ -35,12 +34,10 @@ class Nilai extends Database
         return $data;
     }
 
-    public function update($nilai, $nilai_akhir, $mahasiswa_id, $matkul_id, $semester_id, $id)
+    public function update($data, $id)
     {
-        $nilai = floatval($nilai);
-        $nilai_akhir = floatval($nilai_akhir);
         return $this->conn->query("UPDATE $this->table 
-        SET nilai = '$nilai',nilai_akhir = '$nilai_akhir',mahasiswa_id = '$mahasiswa_id',matkul_id = '$matkul_id',semester_id = '$semester_id'
+        SET nilai = '" . $data["nilai"] . "',nilai_akhir = '" . $data["nilai_akhir"] . "',mahasiswa_id = '" . $data["mahasiswa_id"] . "',matkul_id = '" . $data["matkul_id"] . "',semester_id = '" . $data["semester_id"] . "'
         WHERE nilai_id = '$id'");
     }
 

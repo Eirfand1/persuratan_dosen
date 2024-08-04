@@ -1,6 +1,2 @@
 <?php
-include("app/autoload.php");
-
-
-
-?>
+include("autoload.php");
