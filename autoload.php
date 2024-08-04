@@ -1,5 +1,5 @@
 <?php
-include("Config/database.php");
+include("app/Config/database.php");
 define("BASE_URL", "http://127.0.0.1:8000/");
 //define("BASE_URL", "http://localhost/");
 $database = new Database();
@@ -7,5 +7,5 @@ $database = new Database();
 // Arrow function cik
 spl_autoload_register(
    fn ($class) =>
-   require_once 'Model/' . $class . '.php'
+   require_once 'app/Model/' . $class . '.php'
 );

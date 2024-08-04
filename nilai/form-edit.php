@@ -12,23 +12,25 @@ if (isset($_POST["save"])) {
         echo "
         <script>
             alert('Gagal Mengubah Nilai');
-            window.location.href = '" . BASE_URL . "app/views/nilai/index.php'
+            window.location.href = '" . BASE_URL . "nilai/index.php'
         </script>
         ";
     } else {
 
         $id = mysqli_real_escape_string($database->conn, $_POST["id"]);
-        $nilai_a = mysqli_real_escape_string($database->conn, $_POST["nilai"]);
-        $nilai_akhir = mysqli_real_escape_string($database->conn, $_POST["nilai_akhir"]);
-        $mahasiswa_id = mysqli_real_escape_string($database->conn, $_POST["mahasiswa"]);
-        $matkul_id = mysqli_real_escape_string($database->conn, $_POST["matkul"]);
-        $semester_id = mysqli_real_escape_string($database->conn, $_POST["semester"]);
+        $data = [
+            "nilai" => floatval(mysqli_real_escape_string($database->conn, $_POST["nilai"])),
+            "nilai_akhir" => floatval(mysqli_real_escape_string($database->conn, $_POST["nilai_akhir"])),
+            "mahasiswa_id" => mysqli_real_escape_string($database->conn, $_POST["mahasiswa"]),
+            "matkul_id" => mysqli_real_escape_string($database->conn, $_POST["matkul"]),
+            "semester_id" => mysqli_real_escape_string($database->conn, $_POST["semester"]),
+        ];
 
-        if ($nilai->update($nilai_a, $nilai_akhir, $mahasiswa_id, $matkul_id, $semester_id, $id)) {
+        if ($nilai->update($data, $id)) {
             echo "
             <script>
                 alert('Berhasil Mengubah Nilai');
-                window.location.href = '" . BASE_URL . "app/views/nilai/index.php'
+                window.location.href = '" . BASE_URL . "nilai/index.php'
             </script>
             ";
         }
