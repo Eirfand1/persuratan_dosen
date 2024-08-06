@@ -18,14 +18,6 @@ $nilai = new Nilai();
    <form action="" method="post">
       <table>
          <tr>
-            <td>Nilai</td>
-            <td><input type="number" name="nilai"></td>
-         </tr>
-         <tr>
-            <td>Nilai Akhir</td>
-            <td><input type="text" name="nilai_akhir"></td>
-         </tr>
-         <tr>
             <td>Mahasiswa</td>
             <td>
                <select name="mahasiswa_id" id="mahasiswa_id">
@@ -57,6 +49,14 @@ $nilai = new Nilai();
                  <?php endforeach?>
                </select>
             </td>
+         </tr>
+         <tr>
+            <td>Nilai</td>
+            <td><input type="number" name="nilai"></td>
+         </tr>
+         <tr>
+            <td>Nilai Akhir</td>
+            <td><input type="text" name="nilai_akhir"></td>
          </tr>
          <tr>
             <td><button>Submit</button></td>

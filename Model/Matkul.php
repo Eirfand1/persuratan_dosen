@@ -11,22 +11,25 @@ class Matkul extends Database {
    }
 
    public function getById($id){
+      $id = $this->conn->real_escape_string($id);
       return $this->conn->query("SELECT * FROM $this->table WHERE matkul_id = '$id'");
    }
+
    public function insert($data){
-      $code = $data["code"];
-      $name = $data["name"];
-      $query = $this->conn->query("INSERT INTO $this->table (kode_matkul, nama_matkul) VALUE ('$code','$name')") or die(); 
+      $code = $this->conn->real_escape_string($data["code"]);
+      $name = $this->conn->real_escape_string($data["name"]);
+      $query = $this->conn->query("INSERT INTO $this->table (kode_matkul, nama_matkul) VALUE ('$code','$name')") or die($this->conn->error); 
       return $query;
-      
    }
+
    public function delete($id){
+      $id = $this->conn->real_escape_string($id);
       return $this->conn->query("DELETE FROM $this->table WHERE matkul_id = '$id'");
    }
    
    public function edit($id, $data){
-      $name = $data["name"];
-      return $this->conn->query("UPDATE $this->table SET nama_matkul = '$name' WHERE matkul_id = '$id'") or die();
+      $id = $this->conn->real_escape_string($id);
+      $name = $this->conn->real_escape_string($data["name"]);
+      return $this->conn->query("UPDATE $this->table SET nama_matkul = '$name' WHERE matkul_id = '$id'") or die($this->conn->error);
    }
-
 }

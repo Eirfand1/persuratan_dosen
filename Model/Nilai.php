@@ -15,13 +15,15 @@ class Nilai extends Database {
       return $data;
    }
    public function insert($data){
-      $nilai = $data['nilai'];
-      $nilai_akhir = $data['nilai_akhir'];
-      $mahasiswa_id = $data['mahasiswa_id'];
-      $matkul_id = $data['matkul_id'];
-      $semester_id = $data['semester_id'];
-      return $this->conn->query("INSERT INTO nilai (nilai,nilai_akhir,mahasiswa_id,matkul_id,semester_id) VALUE
-      ('$nilai','$nilai_akhir','$mahasiswa_id','$matkul_id','$semester_id') 
-       ") or die($this->conn->error); 
-   }
+      $nilai = $this->conn->real_escape_string($data['nilai']);
+      $nilai_akhir = $this->conn->real_escape_string($data['nilai_akhir']);
+      $mahasiswa_id = $this->conn->real_escape_string($data['mahasiswa_id']);
+      $matkul_id = $this->conn->real_escape_string($data['matkul_id']);
+      $semester_id = $this->conn->real_escape_string($data['semester_id']);
+      
+      $query = "INSERT INTO nilai (nilai, nilai_akhir, mahasiswa_id, matkul_id, semester_id) 
+                VALUES ('$nilai', '$nilai_akhir', '$mahasiswa_id', '$matkul_id', '$semester_id')";
+      
+      return $this->conn->query($query) or die($this->conn->error);
+   } 
 }
