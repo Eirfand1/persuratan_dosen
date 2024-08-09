@@ -52,7 +52,7 @@
          </tr>
          <tr>
             <td><button>Submit</button></td>
-            <td><a href="index.php">Kembali</a></td>
+            <td><a href="/dosen/nilai">Kembali</a></td>
          </tr>
       </table>
    </form>
