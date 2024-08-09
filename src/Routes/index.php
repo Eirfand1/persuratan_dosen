@@ -17,5 +17,6 @@ $router->get('/admin/addmatkul', MatkulController::class,'addView');
 $router->post('/admin/addmatkul', MatkulController::class,'add');
 $router->get('/dosen/nilai',NilaiController::class,'index');
 $router->get('/dosen/tambahnilai', NilaiController::class,'addView');
+$router->post('/dosen/tambahnilai', NilaiController::class,'add');
 
 $router->dispatch();

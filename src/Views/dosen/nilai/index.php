@@ -16,7 +16,7 @@
       ?>
    <h2 class="text-2xl m-2 mb-4 font-semibold">List Nilai</h2>
    <div class="p-4 m-2 bg-white overflow-x-auto">
-      <a href="add.php" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mb-2 inline-block">Tambah data nilai</a>
+      <a href="tambahnilai" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mb-2 inline-block">Tambah data nilai</a>
 
       <table border="1" cellpadding="10" cellspacing="0" class="w-full text-left border"  id="myTable">
          <thead class="font-bold">
