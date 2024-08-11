@@ -35,7 +35,7 @@ class NilaiController extends Controller{
         $data = $_POST;
         if ($this->table->insert($data)) {
                 echo "<script>alert('Berhasil! menambahkan Matkul');
-                      window.location.href = '/admin/mtklh';
+                      window.location.href = '/dosen/nilai';
                       </script>";
             } else {
                 echo "<script>alert('Gagal! menambahkan Matkul')</script>";

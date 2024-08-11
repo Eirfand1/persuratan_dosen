@@ -1,19 +1,35 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\Matkul;
+use App\Models\Nilai;
+use App\Models\Mahasiswa;
+use App\Models\Semester;
 
 use App\Controller;
-use App\Models\Journal;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(){
+        header("Location: /login");
+    }
+    public function AdminIndex()
     {
-        $journals = [
-            new Journal('My Third Journal Entry', '2023'),
-            new Journal('My Second Journal Entry', '2022'),
-            new Journal('My First Journal Entry', '2021')
-        ];
-        $this->render('index', ['journals' => $journals]);
+        $mhs = new Mahasiswa();
+        $matkul = new Matkul();
+        $semester = new Semester();
+        $resultSemester = $semester->getAllSemesters()->num_rows;
+        $resultMatkul = $matkul->all()->num_rows;
+        $resultMhs = $mhs->getAllMhs()->num_rows;
+
+        $this->render('admin/index', ['user' => 'admin',
+                                      'mhs'=> $resultMhs,
+                                      'semester'=> $resultSemester,
+                                      'matkul' => $resultMatkul
+                                     ]);
+        
+    }
+    public function DosenIndex(){
+        $this->render('dosen/index', ['user'=>'dosen']);
     }
 }
